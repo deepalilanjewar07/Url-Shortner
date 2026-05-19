@@ -73,4 +73,6 @@ The frontend is an Angular-based UI that includes a URL generation page where us
 
 ## 👨‍💻 Author
 
+
 **Deepali Lanjewar**
+

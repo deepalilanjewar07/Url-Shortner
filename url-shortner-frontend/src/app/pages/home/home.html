@@ -1,0 +1,123 @@
+<div class="main-wrapper">
+
+  <div class="hero-section">
+
+    <h1 class="title">
+      URL Shortener
+    </h1>
+
+    <p class="subtitle">
+      Short links. Bigger reach.
+    </p>
+
+    <div class="url-card">
+
+      <input
+        type="text"
+        class="url-input"
+        placeholder="Paste your long URL here..."
+        [(ngModel)]="url"
+      >
+
+      <button class="short-btn" (click)="shortenUrl()">
+
+        @if (!loading) {
+          <span>Shorten URL</span>
+        }
+
+        @if (loading) {
+          <span>Generating...</span>
+        }
+
+      </button>
+
+      @if (shortUrl) {
+
+        <div class="result-box">
+
+          <p class="result-label">
+            Your Short URL
+          </p>
+
+          <div class="result-actions">
+
+            <a [href]="shortUrl" target="_blank" class="short-link">
+              {{ shortUrl }}
+            </a>
+
+            <button
+              class="copy-btn"
+              (click)="copy(shortUrl)">
+              Copy
+            </button>
+
+          </div>
+
+          @if (copied) {
+            <small class="copied-text">
+              Copied Successfully
+            </small>
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+  @if (urlhistory.length > 0) {
+
+    <div class="history-section">
+
+      <h2 class="history-title">
+        Recent Links
+      </h2>
+
+      @for (item of urlhistory; track item.short) {
+
+        <div class="history-card">
+
+          <div class="history-left">
+
+            <p class="original-url">
+              {{ item.original }}
+            </p>
+
+            <a
+              [href]="item.short"
+              target="_blank"
+              class="history-link">
+
+              {{ item.short }}
+
+            </a>
+
+          </div>
+
+          <div class="history-actions">
+
+            <button
+              class="copy-small-btn"
+              (click)="copy(item.short)">
+              Copy
+            </button>
+
+            <button
+              class="delete-btn"
+              (click)="deleteFromHistory(item.short)">
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</div>

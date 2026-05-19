@@ -1,0 +1,129 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+
+  /* Clean modern base */
+  background: #0f172a; /* dark navy base */
+}
+
+/* Subtle grid overlay */
+.login-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  ),
+  linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.4;
+}
+
+/* Floating gradient blobs */
+.login-container::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #4f46e5, transparent 60%);
+  top: -200px;
+  left: -200px;
+  filter: blur(60px);
+  opacity: 0.5;
+}
+
+/* second blob using wrapper trick */
+.login-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 14px;
+  width: 340px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* second floating blob */
+.login-container::marker {
+  /* (not used, just placeholder to keep structure clean) */
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.login-card label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: 0.2s;
+}
+
+.login-card input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.login-card button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 11px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.login-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.25);
+}
+
+.signup-link {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.signup-link a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* smooth entrance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
