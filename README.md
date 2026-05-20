@@ -40,16 +40,40 @@ The frontend is an Angular-based UI that includes a URL generation page where us
 
 ---
 
-## 🔄 Request Flow
+## 🧠 System Design / Architecture Flow
 
-1. User sends request to backend (signup/login/shorten URL)
-2. Controller receives request
-3. Service layer processes business logic
-4. Redis is checked for cached URLs
-5. PostgreSQL is used if data is not in cache
-6. Kafka handles background processing (analytics/events)
-7. Response is returned to client
+### 🔗 URL Shortening Flow
+1. User submits a long URL via frontend
+2. Backend Controller receives the request
+3. Service layer generates a short URL using Base62 encoding
+4. Short URL mapping is stored in PostgreSQL
+5. Redis is checked first for existing URL mappings (cache-aside strategy)
+6. If not found in cache, database is queried and result is cached in Redis
+7. Response returns short URL to the user
 
+---
+
+### 🔁 Redirection Flow
+1. User accesses short URL
+2. Backend checks Redis cache for original URL
+3. If cache miss → fetch from PostgreSQL
+4. Redirect user to original URL
+5. Cache is updated for faster future access
+
+---
+
+### 📊 Analytics & Event Processing Flow
+1. Every redirect event is published to Kafka
+2. Kafka consumer processes click events asynchronously
+3. Analytics data is stored in PostgreSQL
+4. Logs are generated for monitoring and debugging
+
+---
+
+### 🚦 Rate Limiting Flow
+1. Each incoming request is checked against rate limiter
+2. If threshold exceeded → request is rejected
+3. Ensures system stability and prevents abuse
 ---
 
 ## 🛠️ Tech Stack
