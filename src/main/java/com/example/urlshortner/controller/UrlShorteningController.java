@@ -38,6 +38,11 @@ public class UrlShorteningController {
         this.urlService = urlService;
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "URL Shortener backend is running!";
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> createShortLink(
             @Valid @RequestBody UrlDto urlDto,
