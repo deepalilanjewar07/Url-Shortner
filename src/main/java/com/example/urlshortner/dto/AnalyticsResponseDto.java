@@ -1,7 +1,13 @@
 package com.example.urlshortner.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class AnalyticsResponseDto {
 
     private String originalUrl;
@@ -34,51 +40,4 @@ public class AnalyticsResponseDto {
         this.expirationDate = expirationDate;
     }
 
-    public String getOriginalUrl() {
-        return originalUrl;
-    }
-
-    public void setOriginalUrl(String originalUrl) {
-        this.originalUrl = originalUrl;
-    }
-
-    public String getShortLink() {
-        return shortLink;
-    }
-
-    public void setShortLink(String shortLink) {
-        this.shortLink = shortLink;
-    }
-
-    public long getClickCount() {
-        return clickCount;
-    }
-
-    public void setClickCount(long clickCount) {
-        this.clickCount = clickCount;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public LocalDateTime getLastAccessed() {
-        return lastAccessed;
-    }
-
-    public void setLastAccessed(LocalDateTime lastAccessed) {
-        this.lastAccessed = lastAccessed;
-    }
-
-    public LocalDateTime getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(LocalDateTime expirationDate) {
-        this.expirationDate = expirationDate;
-    }
 }
